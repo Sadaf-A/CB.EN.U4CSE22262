@@ -1,11 +1,10 @@
-# Microservices Data Processing Platform
+# Microservices
 
 ## Project Background
 
-### Architectural Overview
-This microservices project addresses two critical data processing challenges:
-1. Numerical Sequence Analysis
-2. Real-time Stock Market Data Aggregation
+### Projects
+1. Average Calculator HTTP Microservice
+2. Stock Price Aggregation HTTP Microservice
 
 ### Design Philosophy
 The microservices are designed with a focus on:
@@ -23,7 +22,7 @@ The microservices are designed with a focus on:
 
 ## Detailed Design Considerations
 
-### Number Average Calculator Microservice
+### Average Calculator HTTP Microservice
 
 #### Architectural Approach
 The microservice implements a sophisticated sliding window algorithm with the following design principles:
@@ -134,7 +133,7 @@ Where:
 }
 ```
 
-### Stock Price Aggregation
+### Stock Price Aggregation HTTP Microservice
 #### 1. Average Stock Price
 **Endpoint:** `GET /stocks/:ticker`
 
@@ -216,3 +215,6 @@ Where:
 - Machine learning integration
 - Real-time analytics
 - Enhanced error prediction
+
+![image](https://github.com/user-attachments/assets/b6b5dd6c-67d8-49c3-b12a-1e7f82312c27)
+
