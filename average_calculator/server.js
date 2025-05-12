@@ -4,7 +4,7 @@ const axios = require('axios');
 // Initializing environment
 const app = express();
 const PORT = 9876;
-const WINDOW_SIZE = 10;
+const WINDOW_SIZE = 5;
 const TIMEOUT = 500;
 
 // Sources to fetch data
