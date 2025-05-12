@@ -216,5 +216,7 @@ Where:
 - Real-time analytics
 - Enhanced error prediction
 
-![image](https://github.com/user-attachments/assets/b6b5dd6c-67d8-49c3-b12a-1e7f82312c27)
+<img width="1018" alt="Screenshot 2025-05-12 at 7 34 25 PM" src="https://github.com/user-attachments/assets/452d12f6-8129-4808-8dd1-a182a1db96c9" />
+
+
 
