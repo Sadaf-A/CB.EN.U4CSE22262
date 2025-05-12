@@ -1,27 +1,122 @@
-# Average Calculator Microservice
+# Microservices Data Processing Platform
 
-## Project Overview
+## Project Background
 
-### Microservice Description
-The Average Calculator is a robust Express.js microservice designed to fetch, process, and calculate averages of unique numbers from various number sequences.
+### Architectural Overview
+This microservices project addresses two critical data processing challenges:
+1. Numerical Sequence Analysis
+2. Real-time Stock Market Data Aggregation
+
+### Design Philosophy
+The microservices are designed with a focus on:
+- High Performance
+- Scalability
+- Efficient Resource Utilization
+- Robust Error Handling
+
+## System Architecture
+
+| Microservice | Primary Function | Key Technologies | Performance Characteristics |
+|--------------|------------------|------------------|------------------------------|
+| Number Average Calculator | Process and aggregate numeric sequences | Express.js, Node.js, Axios | Low-latency computation, 500ms timeout |
+| Stock Price Aggregation | Real-time stock price analysis and correlation | Express.js, Node.js, Axios | Dynamic data retrieval, correlation processing |
+
+## Detailed Design Considerations
+
+### Number Average Calculator Microservice
+
+#### Architectural Approach
+The microservice implements a sophisticated sliding window algorithm with the following design principles:
+
+**Window Management Strategy**
+- Fixed window size of 10 unique numbers
+- Intelligent number filtering mechanism
+- Automatic state management
+
+**Computational Workflow**
+1. Receive number type request
+2. Authenticate and retrieve token
+3. Process number sequence
+4. Calculate moving average
+5. Manage window state
+
+**Number Type Processing**
+| Number Type | Processing Logic | Unique Characteristics |
+|-------------|-----------------|------------------------|
+| Prime (p) | Filter prime numbers | Mathematically rigorous selection |
+| Fibonacci (f) | Generate Fibonacci sequence | Sequence-based generation |
+| Even (e) | Select even numbers | Parity-based filtering |
+| Random (r) | Generate random numbers | Unpredictable sequence generation |
+
+#### Token Management
+- Dynamic authentication mechanism
+- Secure token retrieval and caching
+- Minimized authentication overhead
+
+## Output Screenshots
+### Prime Numbers Request (`/numbers/p`)
+<img width="1512" alt="Screenshot 2 (2)" src="https://github.com/user-attachments/assets/8dde0cf1-bdf2-4083-ac56-fe8c89fae5ca" />
+<img width="1512" alt="Screenshot 1 (2)" src="https://github.com/user-attachments/assets/4fa606d6-6af9-4ade-8cd4-12a5e15c9e8c" />
+### Fibonacci Numbers Request (`/numbers/f`)
+<img width="1512" alt="Screenshot 1 (1)" src="https://github.com/user-attachments/assets/13040996-0558-483d-8161-ab1ea297d228" />
+<img width="1512" alt="Screenshot 2 (1)" src="https://github.com/user-attachments/assets/e74257df-02a4-475d-8dd1-a40b038e56d8" />
+### Even Numbers Request (`/numbers/e`)
+<img width="1512" alt="Screenshot 2" src="https://github.com/user-attachments/assets/3aaaa216-20a1-47ca-9a32-c26e86119119" />
+<img width="1512" alt="Screenshot 1" src="https://github.com/user-attachments/assets/45e1f3e8-7589-484e-a2d8-ba1ac79328ec" />
+### Random Numbers Request (`/numbers/r`)
+<img width="1512" alt="Screenshot 1 (3)" src="https://github.com/user-attachments/assets/b585aead-0fa3-40db-9ad9-998838935d89" />
+
+### Stock Price Aggregation Microservice
+
+#### Correlation Analysis Approach
+
+**Correlation Calculation Methodology**
+- Pearson Correlation Coefficient implementation
+- Advanced statistical computation
+- Handling data disparity between stocks
+
+**Calculation Formula**
+```
+Correlation (ρ) = Cov(X,Y) / (σX * σY)
+
+Where:
+- Cov(X,Y): Covariance between stock prices
+- σX, σY: Standard deviations of stock prices
+```
+
+**Data Retrieval Optimization**
+- Parallel API calls
+- Efficient data normalization
+- Minimized computational complexity
+
+#### Key Computational Challenges
+1. Handling varying data availability
+2. Time series alignment
+3. Performance optimization
+4. Cost-effective API usage
 
 ## Technical Specifications
-| Parameter | Configuration |
-|-----------|----------------|
-| Port | 9876 |
-| Request Timeout | 500 milliseconds |
-| Window Size | 10 numbers |
 
-## Supported Number Types
+### System Requirements
+| Parameter | Number Calculator | Stock Price Aggregation |
+|-----------|-------------------|-------------------------|
+| Port | 9876 | 9876 |
+| Request Timeout | 500 milliseconds | Dynamic |
+| Authentication | Token-based | Token-based |
+| Data Window | 10 unique numbers | Configurable time interval |
+
+## API Endpoints
+
+### Number Average Calculator
+**Endpoint:** `GET /numbers/{type}`
+
+**Supported Types:** 
 - `p`: Prime Numbers
 - `f`: Fibonacci Numbers
 - `e`: Even Numbers
 - `r`: Random Numbers
 
-## Endpoint
-**Endpoint:** `GET /numbers/{type}`
-
-### Response Structure
+**Response Structure**
 ```json
 {
   "windowPrevState": [],
@@ -31,68 +126,75 @@ The Average Calculator is a robust Express.js microservice designed to fetch, pr
 }
 ```
 
-## Output Screenshots
+### Stock Price Aggregation
+#### 1. Average Stock Price
+**Endpoint:** `GET /stocks/:ticker`
 
-### Prime Numbers Request (`/numbers/p`)
-<img width="1512" alt="Screenshot 2 (2)" src="https://github.com/user-attachments/assets/8dde0cf1-bdf2-4083-ac56-fe8c89fae5ca" />
-<img width="1512" alt="Screenshot 1 (2)" src="https://github.com/user-attachments/assets/4fa606d6-6af9-4ade-8cd4-12a5e15c9e8c" />
+**Query Parameters:**
+- `minutes`: Time window
+- `aggregation`: Calculation type
 
+#### 2. Stock Price Correlation
+**Endpoint:** `GET /stockcorrelation`
 
+**Query Parameters:**
+- `minutes`: Correlation time window
+- `ticker`: Stock symbols to compare
 
-### Fibonacci Numbers Request (`/numbers/f`)
-<img width="1512" alt="Screenshot 1 (1)" src="https://github.com/user-attachments/assets/13040996-0558-483d-8161-ab1ea297d228" />
-<img width="1512" alt="Screenshot 2 (1)" src="https://github.com/user-attachments/assets/e74257df-02a4-475d-8dd1-a40b038e56d8" />
+## Error Handling Strategy
 
-### Even Numbers Request (`/numbers/e`)
+### Comprehensive Error Management
+- Graceful degradation
+- Informative error responses
+- Preservation of system state
+- Minimal performance impact
 
-<img width="1512" alt="Screenshot 2" src="https://github.com/user-attachments/assets/3aaaa216-20a1-47ca-9a32-c26e86119119" />
-<img width="1512" alt="Screenshot 1" src="https://github.com/user-attachments/assets/45e1f3e8-7589-484e-a2d8-ba1ac79328ec" />
+### Error Response Categories
+| Error Type | HTTP Status | Handling Mechanism |
+|------------|-------------|---------------------|
+| Authentication Failure | 401 | Token refresh |
+| Invalid Request | 400 | Detailed error message |
+| Server Error | 500 | Logging and fallback |
 
-### Random Numbers Request (`/numbers/r`)
-<img width="1512" alt="Screenshot 1 (3)" src="https://github.com/user-attachments/assets/b585aead-0fa3-40db-9ad9-998838935d89" />
+## Performance Optimization Techniques
 
+### Computational Efficiency
+- Memoization of token generation
+- Parallel data retrieval
+- Minimized API call overhead
+- Intelligent caching mechanisms
 
-## Key Features
-- Sliding Window Management
-  * Fixed window size of 10 unique numbers
-  * Automatic number storage and replacement
-  * Unique number filtering
+### Resource Management
+- Low memory footprint
+- Non-blocking I/O operations
+- Efficient data structures
+- Minimal computational complexity
 
-- Authentication Mechanism
-  * Token-based authentication
-  * Dynamic token caching and refreshing
+## Deployment Considerations
 
-## Error Handling
-- 400 Error for invalid number types
-- Automatic rejection of requests exceeding 500ms
-- Preservation of previous window state during failures
+### Scalability Patterns
+- Stateless service design
+- Containerization ready
+- Horizontal scaling support
+- Cloud-native architecture
 
 ## Technology Stack
-- Express.js
-- Node.js
-- Axios
 
-## Dependencies
-- express
-- axios
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| Runtime | Node.js | JavaScript execution |
+| Web Framework | Express.js | API routing |
+| HTTP Client | Axios | External API communication |
+| Authentication | JWT | Secure token management |
 
-## Architecture Highlights
-- Immutable Sliding Window Implementation
-- Secure Token Management
-- High-Performance Number Processing
-- Intelligent Number Filtering
 
-## Setup Instructions
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run the microservice: `node app.js`
-4. Access via `http://localhost:9876/numbers/{type}`
+### Production Deployment
+- Docker containerization
+- Kubernetes orchestration
+- CI/CD pipeline integration
 
-## API Usage
-Use Postman or cURL to make requests:
-```bash
-curl http://localhost:9876/numbers/p
-curl http://localhost:9876/numbers/f
-curl http://localhost:9876/numbers/e
-curl http://localhost:9876/numbers/r
-```
+## Future Enhancements
+- Advanced caching mechanisms
+- Machine learning integration
+- Real-time analytics
+- Enhanced error prediction
