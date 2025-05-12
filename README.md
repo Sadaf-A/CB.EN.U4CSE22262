@@ -149,6 +149,16 @@ Where:
 - `minutes`: Correlation time window
 - `ticker`: Stock symbols to compare
 
+## Output Screenshots
+
+### Average Stock Price
+<img width="1512" alt="Screenshot 1 (4)" src="https://github.com/user-attachments/assets/a3f58244-2b4b-4c6c-96c4-da711421f975" />
+
+### Correlation 
+<img width="1512" alt="Screenshot 1 (5)" src="https://github.com/user-attachments/assets/11c78191-e65a-4a9c-bb63-ebd4f323f91a" />
+<img width="1512" alt="Screenshot 2 (3)" src="https://github.com/user-attachments/assets/150cf5fd-26e9-4f0b-b289-af17abe1a7fc" />
+
+
 ## Error Handling Strategy
 
 ### Comprehensive Error Management
